@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>TOKO BANGUNAN</title>
+
+  <style>
+    /* ===== TAMPILAN DASAR ===== */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      color: #222;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      margin: 10px 0;
+    }
+
+    body > p {
+      text-align: center;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    /* ===== DAFTAR PRODUK ===== */
+    .produk-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .produk {
+      display: flex;
+      flex: 1 1 200px;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      min-width: 0;
+      max-width: 250px;
+      padding: 20px;
+
+      background-color: white;
+      border: 1px solid #e2e5e9;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .produk:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .produk img {
+      display: block;
+      width: 100%;
+      max-width: 180px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .produk h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #222;
+      text-transform: capitalize;
+    }
+
+    .produk p {
+      margin: 0;
+      color: #555;
+    }
+
+    .harga {
+      font-size: 18px;
+      font-weight: bold;
+      color: #198754 !important;
+    }
+
+    /* ===== TOMBOL BELI ===== */
+    .tombol-beli {
+      width: 100%;
+      padding: 11px 20px;
+
+      color: white;
+      background-color: #198754;
+
+      border: none;
+      border-radius: 8px;
+
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+
+      transition: background-color 0.2s;
+    }
+
+    .tombol-beli:hover {
+      background-color: #146c43;
+    }
+
+    .tombol-beli:active {
+      transform: scale(0.98);
+    }
+
+    /* ===== BAGIAN KERANJANG ===== */
+    body > h2 {
+      max-width: 1000px;
+      margin: 40px auto 15px;
+    }
+
+    .keranjang {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+
+      background-color: white;
+      border: 1px solid #e2e5e9;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    #isi-keranjang {
+      margin: 0 0 15px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    #daftar-keranjang {
+      margin: 15px 0;
+    }
+
+    #daftar-keranjang > div {
+      padding: 12px;
+      margin-bottom: 10px;
+
+      background-color: #f8f9fa;
+      border: 1px solid #e2e5e9;
+      border-radius: 8px;
+    }
+
+    .ringkasan {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      padding-top: 12px;
+      margin-top: 12px;
+      border-top: 1px solid #e2e5e9;
+    }
+
+    #jumlah-produk,
+    #total-harga {
+      font-weight: bold;
+    }
+
+    #total-harga {
+      color: #198754;
+    }
+
+    /* ===== TAMPILAN HP ===== */
+    @media (max-width: 480px) {
+      body {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      .produk-container {
+        gap: 12px;
+      }
+
+      .produk {
+        flex-basis: 140px;
+        padding: 12px;
+      }
+
+      .produk h2 {
+        font-size: 17px;
+      }
+
+      .harga {
+        font-size: 16px;
+      }
+
+      .keranjang {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== JUDUL TOKO ===== -->
+  <h1>TOKO BANGUNAN</h1>
+
+  <p>Silakan pilih material yang Anda butuhkan.</p>
+
+  <!-- ===== DAFTAR PRODUK ===== -->
+  <div class="produk-container">
+
+    <div class="produk">
+      <img src="semen.jpg" alt="Semen">
+      <h2>Semen</h2>
+      <p class="harga">Rp54.000</p>
+      <button class="tombol-beli"
+        onclick="beli('semen', 54000)">
+        BELI
+      </button>
+    </div>
+
+    <div class="produk">
+      <img src="semen.jpg" alt="Pasir">
+      <h2>Pasir</h2>
+      <p class="harga">Rp100.000</p>
+      <button class="tombol-beli"
+        onclick="beli('pasir', 100000)">
+        BELI
+      </button>
+    </div>
+
+    <div class="produk">
+      <img src="semen.jpg" alt="Bata">
+      <h2>Bata</h2>
+      <p class="harga">Rp1.000</p>
+      <button class="tombol-beli"
+        onclick="beli('bata', 1000)">
+        BELI
+      </button>
+    </div>
+
+    <div class="produk">
+      <img src="semen.jpg" alt="Besi">
+      <h2>Besi</h2>
+      <p class="harga">Rp75.000</p>
+      <button class="tombol-beli"
+        onclick="beli('besi', 75000)">
+        BELI
+      </button>
+    </div>
+
+    <div class="produk">
+      <img src="semen.jpg" alt="Keramik">
+      <h2>Keramik</h2>
+      <p class="harga">Rp65.000</p>
+      <button class="tombol-beli"
+        onclick="beli('kramik', 65000)">
+        BELI
+      </button>
+    </div>
+
+  </div>
+
+  <!-- ===== KERANJANG BELANJA ===== -->
+  <h2>Keranjang Belanja</h2>
+
+  <div class="keranjang">
+
+    <p id="isi-keranjang">Belum ada produk.</p>
+
+    <div id="daftar-keranjang"></div>
+
+    <div class="ringkasan">
+      <span>Total unit barang:</span>
+      <span id="jumlah-produk">0</span>
+    </div>
+
+    <div class="ringkasan">
+      <span>Total harga:</span>
+      <span>Rp<span id="total-harga">0</span></span>
+    </div>
+
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    let keranjang = {};
+    let total = 0;
+
+    function beli(namaProduk, hargaProduk) {
+
+      // Jika produk sudah ada, tambah jumlahnya.
+      if (keranjang[namaProduk]) {
+        keranjang[namaProduk].jumlah++;
+      }
+
+      // Jika belum ada, masukkan produk ke keranjang.
+      else {
+        keranjang[namaProduk] = {
+          harga: hargaProduk,
+          jumlah: 1
+        };
+      }
+
+      // Tambahkan harga satu barang ke total.
+      total = total + hargaProduk;
+
+      // Tampilkan ringkasan nama produk.
+      document.getElementById("isi-keranjang").textContent =
+        Object.keys(keranjang)
+          .map(function(nama) {
+            let produk = keranjang[nama];
+
+            return nama + " x" + produk.jumlah +
+              " (Rp" + produk.harga.toLocaleString("id-ID") + ")";
+          })
+          .join(", ");
+
+      // Hitung seluruh unit barang, bukan jenis produk.
+      let jumlahUnit = 0;
+
+      for (let nama in keranjang) {
+        jumlahUnit += keranjang[nama].jumlah;
+      }
+
+      document.getElementById("jumlah-produk").textContent =
+        jumlahUnit;
+
+      // Tampilkan total harga.
+      document.getElementById("total-harga").textContent =
+        total.toLocaleString("id-ID");
+
+      // Tampilkan rincian setiap produk.
+      document.getElementById("daftar-keranjang").innerHTML =
+        Object.keys(keranjang)
+          .map(function(nama) {
+            let produk = keranjang[nama];
+            let subtotal = produk.harga * produk.jumlah;
+
+            return `
+              <div>
+                <strong>${nama}</strong><br>
+                Harga: Rp${produk.harga.toLocaleString("id-ID")}<br>
+                Jumlah: ${produk.jumlah}<br>
+                Subtotal: Rp${subtotal.toLocaleString("id-ID")}
+              </div>
+            `;
+          })
+          .join("");
+    }
+  </script>
+
+</body>
+</html>
